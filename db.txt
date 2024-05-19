@@ -1,0 +1,33 @@
+-- Eliminar la base de datos si existe
+DROP DATABASE IF EXISTS bd_api_insurance2;
+
+-- Crear la base de datos
+CREATE DATABASE bd_api_insurance2 CHARSET utf8mb4;
+USE bd_api_insurance2;
+
+-- Crear la tabla 'claims'
+CREATE TABLE claims (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    claim_number VARCHAR(50) NOT NULL,
+    policy_number VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    insured_person VARCHAR(100) NOT NULL,
+    date_of_incident DATE NOT NULL,
+    incident_location VARCHAR(255) NOT NULL,
+    date_filed DATE NOT NULL,
+    claim_status VARCHAR(50) NOT NULL,
+    adjuster_notes TEXT,
+    PRIMARY KEY (id)
+);
+
+-- Insertar datos de ejemplo en la tabla 'claims'
+INSERT INTO claims (claim_number, policy_number, description, amount, insured_person, date_of_incident, incident_location, date_filed, claim_status, adjuster_notes) 
+VALUES ('CLM0001', 'POL12345', 'Accidente de auto', 5000.00, 'John Doe', '2024-01-15', 'New York', '2024-01-16', 'Abierto', 'Investigación en curso');
+INSERT INTO claims (claim_number, policy_number, description, amount, insured_person, date_of_incident, incident_location, date_filed, claim_status, adjuster_notes) 
+VALUES ('CLM0002', 'POL54321', 'Daño por agua en vivienda', 3000.00, 'Jane Smith', '2024-02-10', 'Los Angeles', '2024-02-12', 'En proceso', 'Perito asignado');
+INSERT INTO claims (claim_number, policy_number, description, amount, insured_person, date_of_incident, incident_location, date_filed, claim_status, adjuster_notes) 
+VALUES ('CLM0003', 'POL67890', 'Robo de propiedad', 1500.00, 'Carlos Mendoza', '2024-03-05', 'Miami', '2024-03-06', 'Cerrado', 'Pago realizado');
+
+-- Confirmar las transacciones
+COMMIT;
